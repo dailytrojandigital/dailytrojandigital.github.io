@@ -30,10 +30,6 @@
 
         body { background: black; color: white; }
 
-        #description {
-            padding: 20px;
-        }
-
         #canvas {
             position: fixed;
             left: 0;
@@ -53,19 +49,20 @@
         }
 
         .row { display: flex; margin: 0 auto; }
-        .column { margin: 0 5% 0 0;  }
+        .column { margin: 0 5% 0 0; }
+
+        #description { padding: 20px; }
 
         #transcript { height: 300px; overflow: scroll; }
         #transcript p { font-size: 14px; color: grey; }
 
         @media screen and (max-width: 800px) {
             #description {
-                width: 90%;
+                width: 90%; padding: 0;
             }
-            audio { position: relative; }
-            canvas { opacity: 50%; }
+            #canvas { opacity: 50%; border-bottom: 0; }
             .row { flex-direction: column; }
-            .column { margin: 0; border-bottom: 1px solid grey; }
+            .column { margin: 0; padding: 20px; }
         }
     </style>
 </head>
@@ -82,7 +79,7 @@
                 <small>Hosted by Kevin Gramling. Written by Kevin Gramling, Isabella Zheng, Benjamin Papp, Stacey Obodoechine and Norissa Ramirez. Edited by Kevin Gramling. Produced by Grace Ingram and Christina Chkarboul. General Education is one of three shows on the Daily Trojan podcast network. You can find more episodes anywhere you listen to podcasts.</small>
             </div>
             <div class="column" style="flex: 17%;"></div>
-            <div class="column" style="flex: 33%;">
+            <div class="column" style="flex: 33%;" id="transcript-col">
                 <h2>Transcript</h2>
                 <div id="transcript">
                     <p>0:02</p>
