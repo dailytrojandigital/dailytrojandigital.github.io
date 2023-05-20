@@ -1,0 +1,17 @@
+* {
+    box-sizing: content-box;
+}
+@font-face {
+  font-family: 'Miller Text Bold';
+  src: url('../miller-text-bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Text Pro Bold';
+  src: url('../NeueHaasDisplayMediu.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Text Pro';
+  src: url('../NeueHaasDisplayRoman.ttf') format('truetype');
+}
