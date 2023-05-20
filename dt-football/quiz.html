@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta property="og:image" content="img/preview.jpg" />
+      <link rel="icon" type="image/png" href="img/favicon.png" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href="https://use.typekit.net/iei4dso.css">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <!-- <link rel="stylesheet" href="quiz2.css"> -->
+        <link rel="stylesheet" href="gamepages.css">
+        <title>Quiz | Hopes, Heisman & Heartbreaks</title>
+        <style>
+          /* @media screen and (max-width: 600px){
+                #header {
+                    height: 56px!important;
+                }
+                #header img{
+                width: 150px;
+                    height: auto;
+                    position: absolute;
+                    top: 15%;
+                    left: 50%;
+                    -ms-transform: translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
+                    margin: 0px;
+                    padding: 0px;
+            }
+            } */
+        </style>
+    </head>
+
+    <body id="quizpage">
+      <div id="navbar" onclick="toggleMobileMenu(this)">
+        <div class="block bar1"></div>
+        <div class="block bar2"></div>
+        <div class="block bar3"></div>
+        <ul class="mobile-menu">
+            <!-- <a href="https://dailytrojan.com"><img src="dt-logo.png"></a> -->
+            <li><a href="index.html">schedule</a> </li>
+            <li><a href="quiz.html">quiz</a> </li>
+            <li><a href="heisman.html">heisman</a> </li>
+            <li><a href="contributors.html">contributors</a> </li>
+        </ul>
+    </div>
+    <div id="header">
+        <a href="https://dailytrojan.com"><img src="img/dt-logo.png"></a>
+        <div id="links">
+            <a href="index.html" id="schedule">schedule</a>
+            <a href="quiz.html" id="quiz">quiz</a>
+            <a href="heisman.html" id="heisman">heisman</a>
+            <a href="contributors.html" id="contributors">contributors</a>
+        </div>
+    </div>
+      <hr class="footerborder" />
+
+      <!--QUIZ SECTION-->
+      <div id="quizSection">
+        <h1 id="quizHeader">how well do you know our season?</h1>
+        <div id="questionSection">
+          <!--change image depending on question-->
+          <div class="quizImg">
+            <img id="changeimg" src="img/quiz/1_1.jpg" alt="USC football team"/>
+          </div>
+          <div id="questionWrapper">
+            <div id="quizQuestionNum">
+              <!--change question number as quiz is completed-->
+              <p id="questionNumLabel"><span id="questionNumber">1</span>/8</p>
+            </div>
+            <div id="quizQuestionsWrapper">
+              <!--change question as quiz is completed-->
+              <h4 id="questionHeading">Who was USC’s leading receiver this season?</h4>
+
+              <div class="questionBox" id="A">
+                <div class="questionBoxLetter">A</div>
+                <p class="answer" id="answerA">Mario Williams</p>
+                <div class="clearfloat"></div>
+              </div>
+
+              <div class="questionBox" id="B">
+                <div class="questionBoxLetter">B</div>
+                <p class="answer" id="answerB">Jordan Addison</p>
+                <div class="clearfloat"></div>
+              </div>
+
+              <div class="questionBox" id="C">
+                <div class="questionBoxLetter">C</div>
+                <p class="answer" id="answerC">Kyle Ford</p>
+                <div class="clearfloat"></div>
+              </div>
+
+              <div class="questionBox" id="D">
+                <div class="questionBoxLetter">D</div>
+                <p class="answer" id="answerD">Brenden Rice</p>
+                <div class="clearfloat"></div>
+              </div>
+            </div>
+
+            <button id="quizSubmit">SUBMIT</button>
+          </div>
+          <div id="results">
+            <h2>Results</h2>
+            <h3><span id="resultNum">0</span> / 8</h3>
+            <button id="tryAgain">RETRY</button>
+          </div>
+
+          <div class="clearfloat"></div>
+        </div>
+      </div>
+      <!--End of Quiz-->
+
+
+      <div class="clearfloat"></div>
+        <hr id="footerborder">
+        <div id="footer">
+            <a href="https://dailytrojan.com"><img src="img/dt-logo.png"></a>
+            <div id="footerlinks">
+                <p>
+                    <a href="index.html">schedule</a> |
+                    <a href="quiz.html">quiz</a> |
+                    <a href="heisman.html">heisman</a> |
+                    <a href="contributors.html">contributors</a>
+                </p>
+            </div>
+            <p id="games">
+                <a href="rice.html"> rice </a>| <a href="stanford.html"> stanford </a> | <a href="fresno.html"> fresno </a> | <a href="oregon.html"> osu </a> | <a href="asu.html"> asu </a> | <a href="wsu.html"> wsu </a> | <a href="utah.html"> utah </a> | <a href="arizona.html"> arizona </a> | <a href="cal.html"> california </a> | <br> <a href="boulder.html"> colorado </a> | <a href="ucla.html"> ucla </a> | <a href="notredame.html"> notre dame </a> | <a href="pac12championship.html"> pac-12 championship </a> | <a href="cottonbowl.html"> cotton bowl </a>
+            </p>
+            <div id="socialicons">
+                <a href="https://www.instagram.com/dailytrojan/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://www.facebook.com/DailyTrojan"><i class="fa fa-facebook-square" aria-hidden="true"></i>
+                </a>
+                <a href="https://twitter.com/dailytrojan"><i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.tiktok.com/@dailytrojan"><i class='fab fa-tiktok'></i></a>
+            </div>
+            <p id="copyright">© University of Southern California | Daily Trojan 2022</p>
+        </div>
+      <script src="gamepages.js"></script>
+      <script src="https://kit.fontawesome.com/c945ebc35b.js" crossorigin="anonymous"></script>
+        <script src="quiz.js"></script>
+        <script src="https://kit.fontawesome.com/c945ebc35b.js" crossorigin="anonymous"></script>
+    </body>
+</html>

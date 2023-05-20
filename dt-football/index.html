@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="img/preview.jpg" />
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href="gamepages.css">
+        <!-- <link rel="stylesheet" href="schedule.css"> -->
+        <title>Hopes, Heisman & Heartbreaks</title>
+        <style>
+            /* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+            @import url('https://use.typekit.net/sup1yqc.css');
+            @import url("https://p.typekit.net/p.css?s=1&k=iei4dso&ht=tk&f=18058.18059.18060.18065.14584.14585.14586.14587.9869.9870.9871.9872.18099.18100.18101.18106.18182.18183.18184.18189.18138.18139.18140.18145.18168.18169.18170.18175.18209.18210.18211.18212.18338.18339.18340.18345.18350.18351.18352.18357.18288.18289.18290.18295.18021.18022.18023.18028.18046.18047.18048.18053.18126.18127.18128.18133.47830.47831.47832.47833.47839.47840.47844.47845.47851.47853.47854.47855.47856&a=48116753&app=typekit&e=css");
+
+            @font-face {
+            font-family: "transducer";
+            src: url("https://use.typekit.net/af/d7bde5/00000000000000007735ecca/30/l?subset_id=2&fvd=n9&v=3")
+                format("woff2"),
+                url("https://use.typekit.net/af/d7bde5/00000000000000007735ecca/30/d?subset_id=2&fvd=n9&v=3")
+                format("woff"),
+                url("https://use.typekit.net/af/d7bde5/00000000000000007735ecca/30/a?subset_id=2&fvd=n9&v=3")
+                format("opentype");
+            font-display: auto;
+            font-style: normal;
+            font-weight: 900;
+            font-stretch: normal;
+            }
+
+            @font-face {
+            font-family: "transducer";
+            src: url("https://use.typekit.net/af/f1009d/00000000000000007735eccd/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+                format("woff2"),
+                url("https://use.typekit.net/af/f1009d/00000000000000007735eccd/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+                format("woff"),
+                url("https://use.typekit.net/af/f1009d/00000000000000007735eccd/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+                format("opentype");
+            font-display: auto;
+            font-style: normal;
+            font-weight: 400;
+            font-stretch: normal;
+            }
+
+            @font-face {
+            font-family: "kepler-std";
+            src: url("https://use.typekit.net/af/d0cd82/000000000000000000013141/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+                format("woff2"),
+                url("https://use.typekit.net/af/d0cd82/000000000000000000013141/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+                format("woff"),
+                url("https://use.typekit.net/af/d0cd82/000000000000000000013141/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+                format("opentype");
+            font-display: auto;
+            font-style: italic;
+            font-weight: 400;
+            font-stretch: normal;
+            } */
+
+            *{
+                margin: 0;
+                padding: 0;
+                font-family: transducer,sans-serif;
+                font-weight: 900;
+                font-style: normal;
+            }
+            /* navbar + footer */
+            *::selection{
+                color: #230000;
+                background: #f6cb4e;
+            }
+            body{
+                padding: 0px;
+                margin: 0px;
+                background-color: #f0f0f0;
+            }
+            .clearfloat{
+                clear: both;
+            }
+            h1,
+            h2,
+            h3,
+            a,
+            p,
+            img {
+                padding: 0px;
+                margin: 0px;
+                text-decoration: none;
+                color: black;
+            }
+            a:hover {
+                color: #9a2133;
+                -moz-transition: all 2s;
+                -webkit-transition: all 2s;
+                -o-transition: all 2s;
+                transition: all 0.5s;
+            }
+            
+            ul{
+                list-style: none;
+                height: 100%;
+                align-items: center;
+                text-align: center;
+                padding: 0px;
+                margin: 0px;
+            
+                font-family: transducer,sans-serif;
+                font-weight: 900;
+                font-style: normal;
+                font-size: 2rem;
+                text-transform: uppercase;
+            }
+            #navbar{
+                margin: auto 0;
+                display: none;
+                cursor: pointer!important;
+                z-index: 1;
+            }
+            #navbar .bar1, .bar2, .bar3 {
+                z-index: 100;
+                cursor: pointer!important;
+            }
+            #navbar div{
+                width: 30px;
+                height: 3px;
+                background-color: rgb(51, 51, 51);
+                margin: 6px 0px 0px 10px;
+                transition: 0.4s;
+                position: relative;
+                top: 15px;
+                left: 5px;
+            }
+            /* .open .bar1{
+                -webkit-transform: rotate(-45deg) translate(-8px, 5px);
+                transform: rotate(-45deg) translate(-8px, 5px);
+            }
+            .open .bar2{
+                opacity: 0;
+            }
+            .open .bar3{
+                -webkit-transform: rotate(45deg) translate(-8px, -4px);
+                transform: rotate(45deg) translate(-8px, -4px);
+            } */
+            /* .open .mobile-menu{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                }
+                .mobile-menu img{
+                width: 150px;
+                height: auto;
+                position: absolute;
+                top: 4%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                margin: 0px;
+                padding: 0px;
+                }
+                .mobile-menu{
+                height: calc(100vh - 55px);
+                display: none;
+                width: 100%;
+                position: absolute;
+                background-color: #f0f0f0;
+                
+                bottom: 0;
+                z-index: 100;
+                }
+                .mobile-menu li{
+                    margin-bottom: 10px;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                } */
+            
+            #header {
+                height: 85px!important;
+                position: relative;
+                margin-bottom: 30px;
+                padding: 0px;
+                z-index: 2;
+                /* font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; */
+                text-decoration: none;
+                font-family: "Roboto", sans-serif;
+                color: black;
+                z-index: 2;
+                /* border-bottom: .5px solid black; */
+            }
+            #header a,
+            p {
+                color: black;
+            }
+            #links {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                margin: 0px;
+                padding: 0px;
+                text-transform: uppercase;
+                font-size: 0.8rem;
+                width: 50%;
+                display: flex;
+                justify-content: space-around;
+            }
+            
+            #dt-logo {
+                position: absolute;
+                top: 0;
+            }
+
+
+            #header img {
+                width: 150px;
+                height: auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                margin: 0px;
+                padding: 0px;
+            }
+            
+            #footer {
+                height: fit-content;
+                align-items: center;
+                text-align: center;
+                color: black;
+                padding: 50px;
+                /* font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; */
+                font-family: "Roboto", sans-serif;
+                text-decoration: none;
+            }
+            
+            #games {
+                text-transform: uppercase;
+            }
+            
+            #footer a,
+            p {
+                color: black;
+            }
+            .footerborder {
+                height: 0.5px;
+                background-color: black;
+                border: 0px;
+                margin: 0px;
+            }
+            #footer img {
+                width: 150px;
+                height: auto;
+                position: absolute;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                margin: 0px;
+                padding: 0px;
+            }
+            #footerlinks {
+                padding: 50px 0px 25px 0px;
+                text-transform: uppercase;
+            }
+            #socialicons {
+                padding: 25px 0px 0px 0px;
+            }
+            #socialicons a {
+                font-size: 1.4rem;
+            }
+            i {
+                color: #f6cb4e;
+                width: 20px;
+            }
+            #copyright {
+                padding-top: 50px;
+                font-size: 0.8rem;
+            }
+            
+            @media screen and (max-width: 600px) {
+                body{
+                overflow-x: hidden;
+                }
+                #links{
+                    display: none;
+                }
+                #header {
+                    height: 63px!important;
+                }
+                #header img{
+                    width: 150px;
+                    height: auto;
+                    position: absolute;
+                    top: 51.5%;
+                    /* left: 48.5%; */
+                    -ms-transform: translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
+                    margin: 0px;
+                    padding: 0px;
+                }
+                #headerborder{
+                    height: .5px;
+                    background-color: black;
+                    border: 0px;
+                    /* margin-top: -30px; */
+                }
+                #navbar{
+                    display: block;
+                }
+                #body h1{
+                    font-family: kepler-std,serif;
+                    font-weight: 400;
+                    font-style: italic;
+                    color: #9a2133;
+                    text-align: center;
+                    margin-top: 50px;
+                }
+                #body{
+                    padding: 0px;
+                    margin: 0px;
+                }
+                #items {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    margin: 0 auto;
+                }
+                #items img {
+                    width: 300px;
+                    height: 300px;
+                    margin-bottom: 10px;
+                }
+                .nametags {
+                    width: 300px;
+                }
+                .nametag {
+                    width: 300px;
+                }
+                .nametag p {
+                    text-align: left;
+                    width: 300px;
+                    font-family: transducer,sans-serif;
+                    font-weight: 900;
+                    font-style: normal;
+                    font-size: 1.3rem;
+                    text-transform: uppercase;
+                    padding-left: 13px;
+                    padding-bottom: 10px;
+                }
+                .footerborder {
+                height: 0.5px;
+                background-color: black;
+                border: 0px;
+                margin-top: -50px;
+                }
+            }
+            body{
+                background-color: #f0f0f0;
+                height: 100vh;
+                overflow: hidden!important;
+            }
+            .game-icons{
+                width: 80px;
+                height: auto;
+            }
+
+            /* #navbar *{
+                margin: 0;
+                z-index: 2;
+            } */
+
+            /* .mobile-menu{
+                z-index: 2;
+            }
+
+            .mobile-menu *{
+                z-index: 3;    
+            } */
+
+            main{
+                height: calc(105vh - 60px);
+                margin-top: 60px;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #819A68;
+                background-image: url("img/homepage/yard-lines-vertical.png");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 100%;
+            }
+
+            #header{ 
+                background-color: #f0f0f0;
+                height: 60px; 
+                margin-top:0; 
+                z-index: 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                border-bottom: 0.5px solid black;
+            }
+
+            .container{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                /* background-color: aliceblue; */
+                width: 90vw;
+                height: 70vh;
+                position: relative;
+                bottom: 5rem;
+
+            }
+
+            p{
+                font-style: transducer, serif;
+                font-style: normal;
+                font-weight: 900;
+                color: black;
+                text-shadow: none;
+            }
+
+            .teams{
+                display: flex;
+                flex-direction: row;
+                height: 100%;
+                width: 50vh;
+                justify-content: space-around;
+            }
+
+            .teams *{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+            }
+
+            .inner-teams{
+                height: 55vh;
+                margin: auto 0;
+            }
+
+            .nav{
+                display: none;
+                flex-direction: column;
+
+                z-index: 1;
+            }
+
+
+            .nav * p{
+                font-size: 2.1rem;
+                text-align: center;
+                /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
+            }
+
+            .nav *{
+                text-decoration: none;
+            }
+
+            .scoreboard{
+                position:fixed;
+                left: 0px;
+                right: 0px;
+                bottom: 15px;
+                width: 230px;
+                height: 75px;
+                background-color: white;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1.5px solid black;
+                border-radius: 20px;
+            }
+
+            #score{
+                font-size: 48px;
+                color: black;
+            }
+
+            .footerborder{
+                background-color: #f0f0f0;
+            }
+
+            #navbar{
+                z-index: 1;
+            }
+            
+            @keyframes bounce {
+                0%, 100%, 20%, 50%, 80% {
+                    -webkit-transform: translateY(0);
+                    -ms-transform:     translateY(0);
+                    transform:         translateY(0)
+                }
+                40% {
+                    -webkit-transform: translateY(-30px);
+                    -ms-transform:     translateY(-30px);
+                    transform:         translateY(-30px)
+                }
+                60% {
+                    -webkit-transform: translateY(-15px);
+                    -ms-transform:     translateY(-15px);
+                    transform:         translateY(-15px)
+                }
+            }
+            .game-icons {  
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            -webkit-animation-iteration-count: infinite;
+            color: white;
+            }
+            .game-icons:hover {
+            cursor: pointer;
+            animation-name: bounce;
+            -moz-animation-name: bounce;
+            }
+
+            @media (min-width: 915px){
+                body{
+                    overflow: hidden;
+                }
+                main{
+                    background-image: url("img/homepage/yard-lines.png");
+                    background-size: initial;
+                    background-repeat: repeat-x;
+                }
+
+                
+                .game-icons{
+                    width: 96px;
+                    height: auto;
+                }
+
+                #header{
+                    height: 70px;
+                    background-color: #f0f0f0;
+                    margin-bottom: 0;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                }
+                .nav{
+                    display: flex;
+                    position: initial;
+                    background-color: transparent;
+                }
+
+                .nav *:hover{
+                    color: #9a2133;
+                }
+                
+                .nav * p{
+                    font-size: 40px;
+                    text-align: center;
+                    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+                }
+
+                p{
+                    color: white;
+                }
+
+                .scoreboard{
+                    width: 350px;
+                    height: 120px;
+                }
+
+                #score{
+                    font-size: 60px;
+                }
+
+                .container{
+                    height: 75vh;
+                    position: initial;
+                }
+
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="navbar" onclick="toggleMobileMenu(this)">
+            <div class="block bar1"></div>
+            <div class="block bar2"></div>
+            <div class="block bar3"></div>
+            <ul class="mobile-menu">
+                <!-- <a href="https://dailytrojan.com"><img src="dt-logo.png"></a> -->
+                <li><a href="index.html">schedule</a> </li>
+                <li><a href="quiz.html">quiz</a> </li>
+                <li><a href="heisman.html">heisman</a> </li>
+                <li><a href="contributors.html">contributors</a> </li>
+            </ul>
+        </div>
+        <div id="header">
+            <a href="https://dailytrojan.com"><img id="dt-logo" src="img/dt-logo.png"></a>
+            <!-- <div id="links">
+                <a href="index.html" id="schedule">schedule</a>
+                <a href="quiz.html" id="quiz">quiz</a>
+                <a href="heisman.html" id="heisman">heisman</a>
+                <a href="contributors.html" id="contributors">contributors</a>
+            </div> -->
+        </div>
+          <hr class="footerborder" />
+        <main id="schedulepage">
+            <div class="container">
+                <div class="teams" id="home-teams">
+                    <div id="team-col-1">
+                        <a href="rice.html" id="helmets-01"><img src="img/homepage/helmets-01.png" alt="helmets-01 Rice" class="game-icons"/></a>
+                        <a href="stanford.html" id="helmets-06"><img src="img/homepage/helmets-07.png" alt="helmets-07 Stanford" class="game-icons"/></a>
+                        <a href="fresno.html" id="helmets-05"><img src="img/homepage/helmets-02.png" alt="helmets-02 Fresno Sate" class="game-icons"/></a>
+                        <a href="oregon.html" id="helmets-04"><img src="img/homepage/helmets-08.png" alt="helmets-09 Oregon State" class="game-icons"/></a>
+                    </div>
+                    <div id="team-col-2" class="inner-teams">
+                        <a href="asu.html" id="helmets-03"><img src="img/homepage/helmets-03.png" alt="helmets-03 Arizona State" class="game-icons"/></a>
+                        <a href="wsu.html" id="helmets-02"><img src="img/homepage/helmets-09.png" alt="helmets-09 Washington State" class="game-icons"/></a>
+                        <a href="utah.html" id="helmets-01"><img src="img/homepage/helmets-04.png" alt="helmets-04 Utah" class="game-icons"/></a>
+                    </div>
+                </div>
+                <div class="nav" id="navcolumn">
+                    <a href="index.html"><p>SCHEDULE</p></a>
+                    <a href="heisman.html"><p>HEISMAN</p></a>
+                    <a href="quiz.html"><p>QUIZ</p></a>
+                    <a href="contributors.html"><p>CONTRIBUTORS</p></a>
+                </div>
+                <div class="teams" id="away-teams">
+                    <div id="team-col-3" class="inner-teams">
+                        <a href="arizona.html" id="helmets-07"><img src="img/homepage/helmets-10.png" alt="helmets-06 Arizona" class="game-icons"/></a>
+                        <a href="cal.html" id="helmets-08"><img src="img/homepage/helmets-05.png" alt="helmets-05 Cal" class="game-icons"/></a>
+                        <a href="boulder.html" id="helmets-09"><img src="img/homepage/helmets-11.png" alt="helmets-11 Colordo" class="game-icons"/></a>
+                    </div>
+                    <div id="team-col-4" >
+                        <a href="ucla.html" id="helmets-10"><img src="img/homepage/helmets-06.png" alt="helmets-10 UCLA" class="game-icons"/></a>
+                        <a href="notredame.html" id="helmets-11"><img src="img/homepage/helmets-12.png" alt="helmets-11 Notre Dame" class="game-icons"/></a>
+                        <a href="pac12championship.html" id="pac12"><img src="img/homepage/pac12.png" alt="pac12" class="game-icons"></a>
+                        <a href="cottonbowl.html" id="cotton_bowl"><img src="img/homepage/cotton_bowl.png" alt="cotton_bowl" class="game-icons"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="scoreboard">
+                <p id="score">11&nbsp;:&nbsp;3</p>
+            </div>
+        </main>
+        <script src="gamepages.js"></script>
+        <script src="https://kit.fontawesome.com/c945ebc35b.js" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,631 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&family=Roboto&display=swap');
+@import url('https://use.typekit.net/sup1yqc.css');
+@import url("https://p.typekit.net/p.css?s=1&k=iei4dso&ht=tk&f=18058.18059.18060.18065.14584.14585.14586.14587.9869.9870.9871.9872.18099.18100.18101.18106.18182.18183.18184.18189.18138.18139.18140.18145.18168.18169.18170.18175.18209.18210.18211.18212.18338.18339.18340.18345.18350.18351.18352.18357.18288.18289.18290.18295.18021.18022.18023.18028.18046.18047.18048.18053.18126.18127.18128.18133.47830.47831.47832.47833.47839.47840.47844.47845.47851.47853.47854.47855.47856&a=48116753&app=typekit&e=css");
+
+@font-face {
+  font-family: "transducer";
+  src: url("https://use.typekit.net/af/d7bde5/00000000000000007735ecca/30/l?subset_id=2&fvd=n9&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/d7bde5/00000000000000007735ecca/30/d?subset_id=2&fvd=n9&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/d7bde5/00000000000000007735ecca/30/a?subset_id=2&fvd=n9&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: italic;
+  font-weight: 900;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "transducer";
+  src: url("https://use.typekit.net/af/f1009d/00000000000000007735eccd/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/f1009d/00000000000000007735eccd/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/f1009d/00000000000000007735eccd/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+}
+
+@font-face {
+    font-family:"transducer";
+src:url("https://use.typekit.net/af/70713c/00000000000000007735eccf/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("woff2"),url("https://use.typekit.net/af/70713c/00000000000000007735eccf/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("woff"),url("https://use.typekit.net/af/70713c/00000000000000007735eccf/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("opentype");
+font-display:auto;font-style:italic;font-weight:900;font-stretch:normal;
+}
+
+
+@font-face {
+    font-family:"transducer";
+    src:url("https://use.typekit.net/af/37181a/00000000000000007735ecd1/30/l?subset_id=2&fvd=i9&v=3") format("woff2"),url("https://use.typekit.net/af/37181a/00000000000000007735ecd1/30/d?subset_id=2&fvd=i9&v=3") format("woff"),url("https://use.typekit.net/af/37181a/00000000000000007735ecd1/30/a?subset_id=2&fvd=i9&v=3") format("opentype");
+    font-display:auto;font-style:italic;font-weight:900;font-stretch:normal;
+    }
+
+#header{
+    z-index: 100;
+}
+
+#header_intro{
+    background-color: white;
+    /* justify-content: space-evenly; */
+    flex-direction: column;
+}
+
+#header_player{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    /* background-color: red; */
+}
+
+#header_player img{
+    /* height: 50vh; */
+    width: 100%;
+    height: 100%;
+    /* width: 100%; */
+    /* background-color: red; */
+    object-fit: cover;
+    
+}
+
+#header_info{
+    width: 90%;
+}
+
+#header_info *{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+#header_info h1{
+    font-size: 3em;
+    font-family: transducer, sans-serif;
+    font-style: italic;
+    width: 50%;
+    line-height: 1em;
+    margin: 0.5rem 0;
+    /* background-color: rebeccapurple; */
+}
+#header_info h4{
+    width: 100%;
+    font-weight: 400;
+    font-style: italic;
+    background-color: #992435;
+    color: white;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.9em;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#header_info h3{
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.7em;
+}
+
+#stats{
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-top: 2.5em;
+    margin-bottom: 2em;
+    width: 95%;
+    flex-wrap: wrap;
+    row-gap: 1em;
+    /* background-color: rebeccapurple; */
+}
+
+/* .spacer{
+    border-right: 1px solid black;
+} */
+
+.stats-col{
+    /* padding: 0 1.1em; */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.stat-num{
+    font-weight: bolder;
+    font-size: 2.2em;
+    line-height: 0.9em;
+}
+
+.stat-category{
+    font-size: 1em;
+    width: 50%;
+    /* background-color: red; */
+    /* margin-left: 1em; */
+    /* text-align: center; */
+    padding-left: 0.5em;
+}
+
+.section h2{
+    font-family: transducer, sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    text-align: center;
+    color: black;
+    padding: 0.8em 0 0.2em;
+    line-height: 1;
+    font-size: 2.5em;
+}
+
+#highlights{
+    background-color: #992435;
+    padding-bottom: 4em;
+}
+
+#highlights h2{
+    color: white;
+    
+    /* background-color: aqua; */
+}
+
+#highlights p{
+    text-align: center;
+    margin: 0;
+    font-style: italic;
+    font-family: transducer, sans-serif;
+    color: white;
+    font-size: 0.8rem;
+    padding-bottom: 2em;
+}
+
+#highlights img{
+    border: 0.5px solid white;
+}
+
+#img-gallery{
+    width: 80%;
+    margin: 1em auto;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto;
+    row-gap: 1em;
+}
+
+.row-ends, #row2, #row3{
+    column-gap: 1em;
+    display: grid;
+}
+
+
+.row-ends{
+    width: 100%;
+    grid-template-columns: auto;
+    row-gap: 1em;
+}
+
+#row2{
+    grid-template-rows: auto auto;
+    row-gap: 1em;
+}
+
+#row3{
+    grid-template-rows: auto auto;
+    row-gap: 1em;
+}
+
+.row-ends img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.row-in{
+    width: 100%;
+    height: 30%;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 1em;
+}
+
+.row-in img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.col{
+    display: grid;
+    grid-template-rows: auto auto;
+    width: 100%;
+    height: 100%;
+    row-gap: 1em;
+    object-fit: cover;
+    
+}
+
+.col img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.section{
+    width: 100%;
+    margin: 0;
+}
+
+
+#stories{
+    background-color: white;
+    margin: 0;
+}
+
+#stories-container{
+    width: 100%;
+    
+}
+
+
+.story-container{
+    background-image: url("img/heisman/football-point-mobile.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100vw;
+    background-position-y: top;
+    width: 100%;
+}
+
+.story{
+    width: 64%;
+    /* background-color: red; */
+    margin: 0 auto;
+    padding-top: 2.5em;
+    padding-bottom: 5em;
+}
+
+.story-container:hover h3, .story-container:hover p{
+    color: #992435;
+    /* text-shadow: -0.5px -0.5px 0 #f0f0f0, 0.5px -0.5px 0 #f0f0f0, -0.5px 0.5px 0 #f0f0f0, 0.5px 0.5px 0 #f0f0f0; */
+
+}
+
+.football-frame{
+    fill: #992435;
+}
+
+.story h3{
+    font-family: "Georgia", serif;
+    font-size: 2em;
+}
+
+.story p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3em;
+    margin-top: 0.5rem;
+}
+
+@media (min-width: 360px){
+    #header_info h1{
+        font-size: 3.6em;
+    }
+    #header_info h4{
+        font-size: 1.1em;
+    }
+}
+
+@media (min-width: 391px){
+    #header_info h1{
+        font-size: 4em;
+    }
+    #header_player{
+        width: 90%;
+        /* height: auto; */
+        min-height: 50%;
+        margin-top: 5vh!important;
+        /* background-color: blue!important; */
+    }
+    #header_intro {
+        height: 110vh;
+    }
+}
+
+@media (min-width: 565px){
+    #header_player{
+        width: 80%;
+        height: auto;
+        min-height: 50%;
+        margin: 0;
+        padding: 0;
+        /* padding-top: 15vh; */
+    }
+    #header_player img{
+        height: 100%!important;
+    }
+    #header_intro {
+        height: 120vh;
+    }
+}
+@media (min-width: 670px){
+    #header_player{
+        width: 80%;
+        height: auto;
+        min-height: 45%;
+        margin: 0;
+        padding: 0;
+        /* padding-top: 15vh; */
+    }
+    #header_player img{
+        height: 100%!important;
+    }
+    #header_intro {
+        height: 140vh;
+    }
+}
+
+@media (min-width: 769px){
+
+    /* #header{
+        height: 70px;
+    } */
+
+    #header_intro{
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    #header_player{
+        width: 40%;
+        height: auto;
+        /* background-color: rebeccapurple; */
+        display: flex;
+        justify-content: end;
+    }
+    
+    #header_player img{
+        height: 100%;
+        width: 100%;
+        /* background-color: red; */
+        object-fit: cover;
+        
+    }
+    
+    #header_info{
+        width: 55%;
+        /* background-color: red; */
+    }
+    
+    #header_info *{
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+    }
+    
+    #header_info h1{
+        font-size: 4em;
+        font-family: transducer, sans-serif;
+        font-style: italic;
+        width: 50%;
+        line-height: 1em;
+        margin: 1.8rem 0;
+    }
+    #header_info h4{
+        font-weight: 400;
+        font-style: italic;
+        background-color: #992435;
+        color: white;
+        padding: 0.5rem 1rem;
+        font-size: 1.3em;
+        width: fit-content;
+        margin: 0;
+    }
+    
+    #header_info h3{
+        font-weight: 400;
+        font-style: normal;
+        font-size: 2em;
+    }
+
+    .section h2{
+        font-size: 3em;
+    }
+    
+    #stats{
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 2.5em;
+        align-content:initial;
+        width: 90%;
+        flex-wrap: nowrap;
+        /* background-color: rebeccapurple; */
+    }
+    
+    .spacer{
+        border-right: 1px solid black;
+    }
+    
+    .stats-col{
+        padding: 0 1.5em;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .stats-col:first-child{
+        padding-left: 0
+    }
+    
+    .stats-col:last-child{
+        padding-right: 0
+    }
+    
+    .stat-num{
+        font-weight: bolder;
+        font-size: 2.2em;
+    }
+    
+    .stat-category{
+        font-size: 1em;
+        padding-left: 0;
+    }
+
+    #img-gallery{
+        width: 80%;
+        margin: 1em auto;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto auto;
+        row-gap: 1em;
+    }
+    
+    .row-ends, #row2, #row3{
+        column-gap: 1em;
+        display: grid;
+    }
+    
+    
+    .row-ends{
+        width: 100%;
+        grid-template-columns: auto auto auto;
+    }
+    
+    #row2{
+        grid-template-columns: 70% 30%;
+        grid-template-rows: auto;
+    }
+    
+    #row3{
+        grid-template-columns: 35% 65%;
+        grid-template-rows: auto;
+    }
+    
+    .row-ends img{
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    .row-in{
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 1em;
+    }
+    
+    .row-in img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .col{
+        display: grid;
+        grid-template-rows: auto auto;
+        width: 100%;
+        height: 100%;
+        row-gap: 1em;
+    }
+    
+    .col:last-child{
+        width: 95.7%;
+    }
+    
+    .row-in:last-child{
+        width: 98.1%;
+    }
+    
+    .col img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    .section{
+        width: 100%;
+        margin: 0;
+    }
+
+    .section h2{
+        padding: 1em 0 0;
+    }
+
+    .story-container{
+        background-image: url("img/heisman/football-point.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-size: 100vw;
+        background-position-y: top;
+        width: 100%;
+    }
+
+    .story-container:hover{
+        background-image: url("img/heisman/football-point-hover.svg")!important;
+    }
+    
+    .story{
+        width: 64%;
+        /* background-color: red; */
+        margin: 0 auto;
+        padding-top: 3.5em;
+        padding-bottom: 5em;
+    }
+
+    .story h3{
+        font-size: 2.5em;
+    }
+    
+    .story p{
+        font-size: 1.7em;
+        margin-top: 0.5rem;
+    }
+}
+
+@media (min-width: 830px) {
+    #header_info h1{
+        font-size: 5em;
+    }
+    #header_info h4{
+        font-size: 1.5em;
+    }
+    
+    #header_info h3{
+        font-size: 2em;
+    }
+    .stat-num{
+        font-weight: bolder;
+        font-size: 3.3em;
+    }
+    
+    .stat-category{
+        font-size: 1.4em;
+        padding-left: 0;
+    }
+}
+
+@media (min-width: 1200px){
+    #header_info h1{
+        font-size: 7em;
+        font-family: transducer, sans-serif;
+        font-style: italic;
+        width: 50%;
+        line-height: 1em;
+        margin: 1.8rem 0;
+    }
+    #header_info h4{
+        font-weight: 400;
+        font-style: italic;
+        background-color: #992435;
+        color: white;
+        padding: 0.5rem 1rem;
+        font-size: 1.8em;
+        width: fit-content;
+        margin: 0;
+    }
+    
+    #header_info h3{
+        font-weight: 400;
+        font-style: normal;
+        font-size: 2.5em;
+    }
+
+    .stats-col{
+        padding: 0 3.5em;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
