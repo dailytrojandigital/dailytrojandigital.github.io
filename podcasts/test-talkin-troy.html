@@ -1,0 +1,362 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Daily Trojan">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Podcast Test - Daily Trojan</title>
+
+    <link rel="stylesheet" href="../univ-stylesheet.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <style>
+        h1 {
+            font-family: 'Neue Haas Grotesk Text Pro Bold'; 
+            font-weight: normal; 
+            font-size: 40px;
+        }
+        h2 { 
+            font-family: 'Neue Haas Grotesk Text Pro Bold'; 
+            font-weight: normal; 
+        }
+
+        p, #timestamp, #duration {
+            font-family: 'Neue Haas Grotesk Text Pro'; 
+            font-size: 17px;
+        }
+
+        #timestamp { margin-left: 10px; }
+
+        #subtitle-container {
+            width: 50%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #controls-info {
+            position: fixed;
+            bottom: 20px;
+            left: 30px;
+        }
+
+        small {
+            font-family: 'Neue Haas Grotesk Text Pro'; 
+            color: grey;
+            font-size: 14px;
+        }
+
+        body { background: black; color: white; }
+
+        #canvas {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: -5;
+            width: 100%;
+            height: 90%;
+            border-bottom: 1px solid white;
+            opacity: 80%;
+        }
+
+        audio, .hidden, #toggle {
+            display: none;
+        }
+
+        button { 
+            padding: 10px 20px; 
+            background: #990000; 
+            color: white;
+            border: none;
+        }
+
+        button p { margin: 0; }
+
+        .row { display: flex; margin: 0 auto; }
+        .column { margin: 0 5% 0 0; }
+
+        #description { padding: 20px; }
+
+        #transcript { height: 300px; overflow-y: scroll; }
+        #transcript p { font-size: 14px; color: grey; }
+
+        #home-logo { width:130px; padding:20px 0 0 20px; }
+
+        @media screen and (max-width: 800px) {
+            #description {
+                width: 90%; padding: 0;
+            }
+            #canvas { opacity: 50%; border-bottom: 0; }
+            .row { flex-direction: column; }
+            .column { margin: 0; padding: 0 20px; }
+            #subtitle-container { 
+                position: fixed; 
+                background: black;
+                bottom: 60px;
+                width: 95%;
+            }
+            #spacer { height: 200px; }
+            #home-logo { padding: 20px 0 0 0; }
+            #pc-spacer { display: none; }
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeUp 1.5s forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK5KHD8MJP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-FK5KHD8MJP');
+    </script>
+
+    <!-- audio visualizer + manual controls + timestamp/duration -->
+    <script>
+        function audVis() {
+            
+            var audio = document.getElementById("audio");
+            audio.load();
+            audio.play();
+            var context = new AudioContext();
+            var src = context.createMediaElementSource(audio);
+            var analyser = context.createAnalyser();
+    
+            var canvas = document.getElementById("canvas");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            var ctx = canvas.getContext("2d");
+    
+            src.connect(analyser);
+            analyser.connect(context.destination);
+    
+            analyser.fftSize = 256;
+    
+            var bufferLength = analyser.frequencyBinCount;
+            console.log(bufferLength);
+    
+            var dataArray = new Uint8Array(bufferLength);
+    
+            var WIDTH = canvas.width;
+            var HEIGHT = canvas.height;
+    
+            var barWidth = (WIDTH / bufferLength) * 2.5;
+            var barHeight;
+            var x = 0;
+    
+            function renderFrame() {
+            requestAnimationFrame(renderFrame);
+    
+            x = 0;
+    
+            analyser.getByteFrequencyData(dataArray);
+    
+            ctx.fillStyle = "#000";
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    
+            for (var i = 0; i < bufferLength; i++) {
+                barHeight = dataArray[i];
+                
+                var r = barHeight + (25 * (i/bufferLength));
+                var g = 250 * (i/bufferLength);
+                var b = 50;
+    
+                ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+                ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+    
+                x += barWidth + 1;
+            }
+            }
+            renderFrame();
+
+            
+        }
+
+        function resume() {
+            audio.play();
+        }
+
+        function pause() {
+            audio.pause();
+        }
+
+        function hide_start() {
+            var button_start = document.getElementById('start');
+            var button_pause = document.getElementById('toggle');
+            button_start.classList.add('hidden');
+            button_pause.style.display = 'inline-block';
+        }
+
+        function toggle_pause_resume() {
+            var button = document.getElementById('toggle');
+            if (audio.paused) {
+                button.innerHTML = "<i class='fa fa-pause'></i>";
+                resume();
+            } else {
+                button.innerHTML = "<i class='fa fa-play'></i>";
+                pause();
+            }
+        }
+
+        function rewindAudio() {
+            var audio = document.getElementById("audio");
+            audio.currentTime -= 15; // Rewind by 15 seconds
+        }
+
+        function fastForwardAudio() {
+            var audio = document.getElementById("audio");
+            audio.currentTime += 15; // Fast-forward by 15 seconds
+        }
+
+        function updateTimestamp() {
+            var audio = document.getElementById("audio");
+            var timestamp = document.getElementById("timestamp");
+            var currentTimestamp = formatTimestamp(audio.currentTime);
+            timestamp.innerHTML = currentTimestamp;
+        }
+
+        function formatTimestamp(timestamp) {
+            var minutes = Math.floor(timestamp / 60);
+            var seconds = Math.floor(timestamp % 60);
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            return minutes + ":" + seconds;
+        }
+
+        function updateDuration() {
+            var audio = document.getElementById("audio");
+            var duration = document.getElementById("duration");
+            var totalDuration = formatTimestamp(audio.duration);
+            duration.innerHTML = totalDuration;
+        }
+    </script>
+</head>
+<body>
+    <div id="content">
+        
+        <div class="row">
+            <div class="column" style="flex: 50%;">
+                <a href="https://dailytrojanonline.com">
+                    <img id="home-logo" src="http://dailytrojan.com/wp-content/uploads/2023/05/dailytrojanonline-icon.png">
+                </a>
+                <div class="fade-up" id="description">
+                    <h1>Talkin&rsquo; Troy</h1>
+                    <h2>Rivalry Week Recap</h2>
+                    <small>April 28, 2023 </small>
+                    <p>The Talkin’ Troy team looks at the recent matchups between the Trojans and their rival UCLA Bruins across multiple sports. Hosts Stefano Fendrich and Darren Parry also look at the postseason outlooks for USC baseball, men’s tennis, women’s tennis, women’s water polo and beach volleyball.</p>
+                    <small>Hosted by Stefano Fendrich and Darren Parry. Written by Leila MacKenzie, Kyle Frankel, Darren Parry, Justin White and Thomas Johnson. Edited by Thomas Johnson. Produced by Grace Ingram.</small>
+                </div>
+                
+            </div>
+            <div class="column" style="flex: 17%;"></div>
+            <div class="column" style="flex: 33%;" id="transcript-col">
+            </div>
+        </div>
+        <div id="spacer"></div>
+        <div id="pc-spacer"><br><br><br></div>
+        <div id="subtitle-container"></div>
+            
+        <canvas id="canvas"></canvas>
+        <audio oncontextmenu="return false;" id="audio" onloadedmetadata="updateDuration()" ontimeupdate="updateTimestamp()">
+            <source src="talkin-troy-4-27.mp3" type="audio/mpeg">
+        </audio>
+
+        <div id="controls-info">
+            <button class="button" onclick="rewindAudio()"><i class="fa fa-fast-backward"></i></button>
+            <button id="start" onclick="audVis(); hide_start()"><i class='fa fa-play'></i></button>
+            <button id="toggle" onclick="toggle_pause_resume()"><i class='fa fa-pause'></i></button>
+            <button class="button" onclick="fastForwardAudio()"><i class="fa fa-fast-forward"></i></button>
+            <span id="timestamp">0:00</span> / <span id="duration">NaN</span>
+        </div>
+    </div>
+
+    <!-- parse VTT file as subtitles -->
+    <script>
+        // Function to parse VTT file and display subtitles
+        function parseVTT(vttData) {
+          const lines = vttData.trim().split('\n');
+          const subtitles = [];
+          let currentSubtitle = null;
+    
+          // Iterate through VTT lines
+          for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+    
+            // Check if line contains the subtitle timestamp
+            if (line.includes('-->')) {
+              const parts = line.split(' --> ');
+              const startTime = parts[0];
+              const endTime = parts[1];
+    
+              // Get the subtitle text
+              const text = lines[i + 1];
+    
+              // Create subtitle object
+              const subtitle = {
+                startTime: startTime,
+                endTime: endTime,
+                text: text
+              };
+    
+              // Add subtitle to the list
+              subtitles.push(subtitle);
+    
+              // Check if the current subtitle is null
+              if (currentSubtitle === null) {
+                currentSubtitle = subtitle;
+              }
+            }
+          }
+    
+          // Display subtitles in sync with audio
+          const audio = document.getElementById('audio');
+          const subtitleContainer = document.getElementById('subtitle-container');
+    
+          audio.addEventListener('timeupdate', function() {
+            const currentTime = audio.currentTime;
+    
+            // Find the current subtitles
+            const currentSubtitles = subtitles.filter(subtitle =>
+              currentTime >= getTimestampInSeconds(subtitle.startTime) &&
+              currentTime <= getTimestampInSeconds(subtitle.endTime)
+            );
+    
+            // Display the current subtitles
+            if (currentSubtitles.length > 0) {
+              subtitleContainer.innerHTML = currentSubtitles.map(subtitle => `<p>${subtitle.text}</p>`).join('');
+            } else {
+              subtitleContainer.innerHTML = '';
+            }
+          });
+    
+          // Function to convert VTT timestamp to seconds
+          function getTimestampInSeconds(timestamp) {
+            const timeParts = timestamp.split(':');
+            const hours = parseInt(timeParts[0]);
+            const minutes = parseInt(timeParts[1]);
+            const seconds = parseFloat(timeParts[2].replace(',', '.'));
+            return hours * 3600 + minutes * 60 + seconds;
+          }
+        }
+    
+        // Load and parse the VTT file
+        fetch('tt-test.vtt')
+          .then(response => response.text())
+          .then(data => parseVTT(data))
+          .catch(error => console.error('Error loading VTT file:', error));
+      </script>
+</body>
