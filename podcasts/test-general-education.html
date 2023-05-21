@@ -6,6 +6,8 @@
     <title>Podcast Test - Daily Trojan</title>
 
     <link rel="stylesheet" href="../univ-stylesheet.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
     <style>
         h1 {
             font-family: 'Neue Haas Grotesk Text Pro Bold'; 
@@ -17,9 +19,23 @@
             font-weight: normal; 
         }
 
-        p {
+        p, #timestamp, #duration {
             font-family: 'Neue Haas Grotesk Text Pro'; 
             font-size: 17px;
+        }
+
+        #timestamp { margin-left: 10px; }
+
+        #subtitle-container {
+            width: 50%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #controls-info {
+            position: fixed;
+            bottom: 20px;
+            left: 30px;
         }
 
         small {
@@ -41,12 +57,18 @@
             opacity: 80%;
         }
 
-        audio {
-            position: fixed;
-            left: 10px;
-            bottom: 10px;
-            width: calc(100% - 20px);
+        audio, .hidden, #toggle {
+            display: none;
         }
+
+        button { 
+            padding: 10px 20px; 
+            background: #990000; 
+            color: white;
+            border: none;
+        }
+
+        button p { margin: 0; }
 
         .row { display: flex; margin: 0 auto; }
         .column { margin: 0 5% 0 0; }
@@ -64,9 +86,29 @@
             .row { flex-direction: column; }
             .column { margin: 0; padding: 20px; }
         }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeUp 1.5s forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
+
+    <!-- audio visualizer + manual controls + timestamp/duration -->
     <script>
-        async function audVis() {
+        function audVis() {
+            
             var audio = document.getElementById("audio");
             audio.load();
             audio.play();
@@ -119,35 +161,180 @@
                 x += barWidth + 1;
             }
             }
-    
-            audio.play();
             renderFrame();
+
+            
         }
 
-        window.onload = function() {
-            audVis();
-        };
+        function resume() {
+            audio.play();
+        }
+
+        function pause() {
+            audio.pause();
+        }
+
+        function hide_start() {
+            var button_start = document.getElementById('start');
+            var button_pause = document.getElementById('toggle');
+            button_start.classList.add('hidden');
+            button_pause.style.display = 'inline-block';
+        }
+
+        function toggle_pause_resume() {
+            var button = document.getElementById('toggle');
+            if (audio.paused) {
+                button.innerHTML = "<i class='fa fa-pause'></i>";
+                resume();
+            } else {
+                button.innerHTML = "<i class='fa fa-play'></i>";
+                pause();
+            }
+        }
+
+        function rewindAudio() {
+            var audio = document.getElementById("audio");
+            audio.currentTime -= 15; // Rewind by 15 seconds
+        }
+
+        function fastForwardAudio() {
+            var audio = document.getElementById("audio");
+            audio.currentTime += 15; // Fast-forward by 15 seconds
+        }
+
+        function updateTimestamp() {
+            var audio = document.getElementById("audio");
+            var timestamp = document.getElementById("timestamp");
+            var currentTimestamp = formatTimestamp(audio.currentTime);
+            timestamp.innerHTML = currentTimestamp;
+        }
+
+        function formatTimestamp(timestamp) {
+            var minutes = Math.floor(timestamp / 60);
+            var seconds = Math.floor(timestamp % 60);
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            return minutes + ":" + seconds;
+        }
+
+        function updateDuration() {
+            var audio = document.getElementById("audio");
+            var duration = document.getElementById("duration");
+            var totalDuration = formatTimestamp(audio.duration);
+            duration.innerHTML = totalDuration;
+        }
     </script>
 </head>
 <body>
     <div id="content">
         
         <div class="row">
-            <div class="column" style="flex: 50%;" id="description">
-                <img src="http://dailytrojan.com/wp-content/uploads/2023/05/dailytrojanonline-icon.png" style="width:130px">
-                <h1>General Education</h1>
-                <h2>Allyson Felix Field, a new USG initiative, and an interview on USC’s rabbinic intern</h2>
-                <small>April 16, 2023</small>
-                <p>This week on General Education, host Kevin Gramling recaps two articles about the track field dedicated to Allyson Felix and a bill drafted by USG aimed at increasing funding transparency. Kevin also speaks to Jennifer Nehrer about her recent profile about a queer, Jewish student whose authenticity inspires those around her.</p>
-                <p>Hosted by Kevin Gramling. Written by Kevin Gramling, Isabella Zheng, Benjamin Papp, Stacey Obodoechine and Norissa Ramirez. Edited by Kevin Gramling. Produced by Grace Ingram and Christina Chkarboul. General Education is one of three shows on the Daily Trojan podcast network. You can find more episodes anywhere you listen to podcasts.</p>
+            <div class="column" style="flex: 50%;">
+                <a href="https://dailytrojanonline.com">
+                    <img src="http://dailytrojan.com/wp-content/uploads/2023/05/dailytrojanonline-icon.png" style="width:130px; padding:20px 0 0 20px;">
+                </a>
+                <div class="fade-up" id="description">
+                    <h1>General Education</h1>
+                    <h2>Allyson Felix Field, a new USG initiative, and an interview on USC’s rabbinic intern</h2>
+                    <small>April 16, 2023</small>
+                    <p>This week on General Education, host Kevin Gramling recaps two articles about the track field dedicated to Allyson Felix and a bill drafted by USG aimed at increasing funding transparency. Kevin also speaks to Jennifer Nehrer about her recent profile about a queer, Jewish student whose authenticity inspires those around her.</p>
+                    <small>Hosted by Kevin Gramling. Written by Kevin Gramling, Isabella Zheng, Benjamin Papp, Stacey Obodoechine and Norissa Ramirez. Edited by Kevin Gramling. Produced by Grace Ingram and Christina Chkarboul.</small>
+                </div>
+                
             </div>
             <div class="column" style="flex: 17%;"></div>
             <div class="column" style="flex: 33%;" id="transcript-col">
             </div>
         </div>
+        <br><br><br>
+        <div id="subtitle-container"></div>
+            
         <canvas id="canvas"></canvas>
-        <audio oncontextmenu="return false;" id="audio" controls controlsList="nodownload">
+        <audio oncontextmenu="return false;" id="audio" onloadedmetadata="updateDuration()" ontimeupdate="updateTimestamp()">
             <source src="ge-5.mp3" type="audio/mpeg">
         </audio>
-      </div>
+
+        <div id="controls-info">
+            <button class="button" onclick="rewindAudio()"><i class="fa fa-fast-backward"></i></button>
+            <button id="start" onclick="audVis(); hide_start()"><i class='fa fa-play'></i></button>
+            <button id="toggle" onclick="toggle_pause_resume()"><i class='fa fa-pause'></i></button>
+            <button class="button" onclick="fastForwardAudio()"><i class="fa fa-fast-forward"></i></button>
+            <span id="timestamp">0:00</span> / <span id="duration">NaN</span>
+        </div>
+    </div>
+
+    <!-- parse VTT file as subtitles -->
+    <script>
+        // Function to parse VTT file and display subtitles
+        function parseVTT(vttData) {
+          const lines = vttData.trim().split('\n');
+          const subtitles = [];
+          let currentSubtitle = null;
+    
+          // Iterate through VTT lines
+          for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+    
+            // Check if line contains the subtitle timestamp
+            if (line.includes('-->')) {
+              const parts = line.split(' --> ');
+              const startTime = parts[0];
+              const endTime = parts[1];
+    
+              // Get the subtitle text
+              const text = lines[i + 1];
+    
+              // Create subtitle object
+              const subtitle = {
+                startTime: startTime,
+                endTime: endTime,
+                text: text
+              };
+    
+              // Add subtitle to the list
+              subtitles.push(subtitle);
+    
+              // Check if the current subtitle is null
+              if (currentSubtitle === null) {
+                currentSubtitle = subtitle;
+              }
+            }
+          }
+    
+          // Display subtitles in sync with audio
+          const audio = document.getElementById('audio');
+          const subtitleContainer = document.getElementById('subtitle-container');
+    
+          audio.addEventListener('timeupdate', function() {
+            const currentTime = audio.currentTime;
+    
+            // Find the current subtitles
+            const currentSubtitles = subtitles.filter(subtitle =>
+              currentTime >= getTimestampInSeconds(subtitle.startTime) &&
+              currentTime <= getTimestampInSeconds(subtitle.endTime)
+            );
+    
+            // Display the current subtitles
+            if (currentSubtitles.length > 0) {
+              subtitleContainer.innerHTML = currentSubtitles.map(subtitle => `<p>${subtitle.text}</p>`).join('');
+            } else {
+              subtitleContainer.innerHTML = '';
+            }
+          });
+    
+          // Function to convert VTT timestamp to seconds
+          function getTimestampInSeconds(timestamp) {
+            const timeParts = timestamp.split(':');
+            const hours = parseInt(timeParts[0]);
+            const minutes = parseInt(timeParts[1]);
+            const seconds = parseFloat(timeParts[2].replace(',', '.'));
+            return hours * 3600 + minutes * 60 + seconds;
+          }
+        }
+    
+        // Load and parse the VTT file
+        fetch('ge-5.vtt')
+          .then(response => response.text())
+          .then(data => parseVTT(data))
+          .catch(error => console.error('Error loading VTT file:', error));
+      </script>
 </body>
