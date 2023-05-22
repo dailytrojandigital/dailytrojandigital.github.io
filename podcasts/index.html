@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../univ-stylesheet.css">
     <script src="https://kit.fontawesome.com/5177f0fe75.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="icons/dt-online-icon.jpg">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK5KHD8MJP"></script>
@@ -19,7 +20,7 @@
         h1 {
             font-family: 'Neue Haas Grotesk Text Pro Bold'; 
             font-weight: normal; 
-            font-size: 40px;
+            font-size: 36px;
         }
         h2, h3 { 
             font-family: 'Neue Haas Grotesk Text Pro Bold'; 
@@ -47,8 +48,9 @@
         .row { display: flex; margin: 0 auto; padding: 20px;
         border-top: 1px solid white; border-bottom: 1px solid white; transition: 0.5s; }
         .column { margin: 0 5% 0 0; }
+        .icon { height: 20px; }
 
-        #ge-main:hover, #ran-main:hover, #tt-main:hover { background: #525252; cursor: pointer; }
+        #ge-main:hover, #ran-main:hover, #tt-main:hover { cursor: pointer; }
         a { text-decoration: none; color: #990000; }
         a h3 { color: black; }
 
@@ -81,7 +83,8 @@
         <img src="http://dailytrojan.com/wp-content/uploads/2023/05/dailytrojanonline-icon.png" 
         style="width:130px; float:right;">
     </a>
-    <h1>Podcasts</h1>
+    <h1 style="margin: 0 auto;">Podcasts</h1>
+    <p style="margin: 0 auto; padding-bottom: 10px; color: grey;">Click each to expand.</p>
 
     <div class="fade-in">
         <!-- General Education -->
@@ -94,7 +97,13 @@
                 <div class="column" style="flex:90%;">
                     
                     <h2>General Education</h2>
-                    <a id="ge-spotify" href="https://podcasters.spotify.com/pod/show/general-education"><img src="spotify-24.png"></a>
+                    <a id="ge-spotify" title="Spotify" target="_blank" href="https://podcasters.spotify.com/pod/show/general-education"><img src="icons/spotify-24.png" class="icon"></a>
+                    &nbsp;&nbsp;
+                    <a id="ge-apple" title="Apple Podcasts" target="_blank" href="https://podcasts.apple.com/us/podcast/general-education/id1418932313?uo=4"><img src="icons/Apple_Podcast_Icon.png" class="icon"></a>
+                    &nbsp;&nbsp;
+                    <a id="ge-google" title="Google Podcasts" target="_blank" href="https://d1f8ha51vzawnk.cloudfront.net/images/podcast/logo-square/006/google_podcasts.png"><img src="icons/google-podcast-icon-white.png" class="icon"></a>
+                    &nbsp;&nbsp;
+
                     <p>Conversations with our reporters about the latest USC news and interviews with individuals making waves within the USC community.</p>
                     <p></p>
                 </div>
@@ -107,14 +116,24 @@
                     hiddenDiv.style.display = "none";
                 })
                 function showToggle() {
+                    // get elements
                     var hiddenDiv = document.getElementById("hidden1");
                     var mainDiv = document.getElementById("ge-main");
                     var spotifyLink = document.getElementById("ge-spotify");
+                    var appleLink = document.getElementById("ge-apple");
+                    var googleLink = document.getElementById("ge-google");
 
+                    // toggle div styles
                     hiddenDiv.style.display = (hiddenDiv.style.display == "none") ? "block" : "none";
                     mainDiv.style.background = (mainDiv.style.background == "white") ? "black" : "white";
                     mainDiv.style.color = (mainDiv.style.color == "black") ? "white" : "black";
-                    spotifyLink.innerHTML = (spotifyLink.innerHTML == "<img src=\"spotify-24.png\">") ? "<img src=\"spotify-24-black.png\">" : "<img src=\"spotify-24.png\">";
+
+                    // toggle icons white/color 
+                    spotifyLink.innerHTML = (spotifyLink.innerHTML == "<img src=\"icons/spotify-24.png\" class=\"icon\">") ? "<img src=\"icons/spotify-icon-color.png\" class=\"icon\">" : "<img src=\"icons/spotify-24.png\" class=\"icon\">";
+                    appleLink.innerHTML = (appleLink.innerHTML == "<img src=\"icons/Apple_Podcast_Icon.png\" class=\"icon\">") ? "<img src=\"icons/Apple_Podcast_Icon_color.png\" class=\"icon\">" : "<img src=\"icons/Apple_Podcast_Icon.png\" class=\"icon\">";
+                    googleLink.innerHTML = (googleLink.innerHTML == "<img src=\"icons/google-podcast-icon-white.png\" class=\"icon\">") ? "<img src=\"icons/google-podcast-icon-color.png\" class=\"icon\">" : "<img src=\"icons/google-podcast-icon-white.png\" class=\"icon\">";
+
+                    // toggle border
                     mainDiv.style.border.top = (mainDiv.style.border.top == "1px solid white") ? "none" : "1px solid white";
                     mainDiv.style.border.bottom = (mainDiv.style.border.bottom == "1px solid white") ? "none" : "1px solid white";
                 }
@@ -128,7 +147,7 @@
             </div>
         </div>
 
-        <!-- Rhythm & News -->
+        <!-- Rhythm and News -->
         <div id="rhythm-and-news">
             <div id="ran-main" class="row" onclick="showToggle2()">
                 <div class="column" style="flex:10%;">
@@ -137,9 +156,13 @@
                 </div>
                 <div class="column" style="flex:90%;">
                     
-                    <h2>Rhythm & News</h2>
-                    <a id="ran-spotify" href="https://podcasters.spotify.com/pod/show/rhythm-and-news"><img src="spotify-24.png"></a>
-                    <p>The Daily Trojan&rsquo;s Arts & Entertainment podcast.</p>
+                    <h2>Rhythm and News</h2>
+                    <a id="ran-spotify" title="Spotify" target="_blank" href="https://podcasters.spotify.com/pod/show/rhythm-and-news"><img src="icons/spotify-24.png" class="icon"></a>
+                    &nbsp;&nbsp;
+                    <a id="ran-apple" title="Apple Podcasts" target="_blank" href="https://podcasts.apple.com/us/podcast/rhythm-and-news/id1420124891?uo=4"><img src="icons/Apple_Podcast_Icon.png" class="icon"></a>
+                    &nbsp;&nbsp;
+                    <a id="ran-google" title="Google Podcasts" target="_blank" href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9hbmNob3IuZm0vcy9lOWEyMDhjL3BvZGNhc3QvcnNz"><img src="icons/google-podcast-icon-white.png" class="icon"></a>
+                    <p>From pop culture breakdowns to discussions with individuals in the USC community, listen to the Daily Trojan's Arts & Entertainment podcast.</p>
                 </div>
             </div>
         
@@ -153,11 +176,17 @@
                     var hiddenDiv = document.getElementById("hidden2");
                     var mainDiv = document.getElementById("ran-main");
                     var spotifyLink = document.getElementById("ran-spotify");
+                    var appleLink = document.getElementById("ran-apple");
+                    var googleLink = document.getElementById("ran-google");
 
                     hiddenDiv.style.display = (hiddenDiv.style.display == "none") ? "block" : "none";
                     mainDiv.style.background = (mainDiv.style.background == "white") ? "black" : "white";
                     mainDiv.style.color = (mainDiv.style.color == "black") ? "white" : "black";
-                    spotifyLink.innerHTML = (spotifyLink.innerHTML == "<img src=\"spotify-24.png\">") ? "<img src=\"spotify-24-black.png\">" : "<img src=\"spotify-24.png\">";
+                    // toggle icons white/color 
+                    spotifyLink.innerHTML = (spotifyLink.innerHTML == "<img src=\"icons/spotify-24.png\" class=\"icon\">") ? "<img src=\"icons/spotify-icon-color.png\" class=\"icon\">" : "<img src=\"icons/spotify-24.png\" class=\"icon\">";
+                    appleLink.innerHTML = (appleLink.innerHTML == "<img src=\"icons/Apple_Podcast_Icon.png\" class=\"icon\">") ? "<img src=\"icons/Apple_Podcast_Icon_color.png\" class=\"icon\">" : "<img src=\"icons/Apple_Podcast_Icon.png\" class=\"icon\">";
+                    googleLink.innerHTML = (googleLink.innerHTML == "<img src=\"icons/google-podcast-icon-white.png\" class=\"icon\">") ? "<img src=\"icons/google-podcast-icon-color.png\" class=\"icon\">" : "<img src=\"icons/google-podcast-icon-white.png\" class=\"icon\">";
+
                     mainDiv.style.border.top = (mainDiv.style.border.top == "1px solid white") ? "none" : "1px solid white";
                     mainDiv.style.border.bottom = (mainDiv.style.border.bottom == "1px solid white") ? "none" : "1px solid white";
                 }
@@ -183,8 +212,13 @@
                 <div class="column" style="flex:90%;">
                     
                     <h2>Talkin' Troy</h2>
-                    <a id="tt-spotify" href="https://podcasters.spotify.com/pod/show/talkin-troy"><img src="spotify-24.png"></a>
+                    <a id="tt-spotify" title="Spotify" target="_blank" href="https://podcasters.spotify.com/pod/show/talkin-troy"><img src="icons/spotify-24.png" class="icon"></a>
+                    &nbsp;&nbsp;
+                    <a id="tt-apple" title="Apple Podcasts" target="_blank" href="https://podcasts.apple.com/us/podcast/talkin-troy/id1434983571?uo=4"><img src="icons/Apple_Podcast_Icon.png" class="icon"></a>
+                    &nbsp;&nbsp;
+                    <a id="tt-google" title="Google Podcasts" target="_blank" href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9hbmNob3IuZm0vcy9lOWExYzQwL3BvZGNhc3QvcnNz"><img src="icons/google-podcast-icon-white.png" class="icon"></a>
                     <p>Everything you need to know about one of the biggest names in college sports: the USC Trojans.</p>
+                    
                     <p></p>
                 </div>
             </div>
@@ -199,11 +233,18 @@
                     var hiddenDiv = document.getElementById("hidden3");
                     var mainDiv = document.getElementById("tt-main");
                     var spotifyLink = document.getElementById("tt-spotify");
+                    var appleLink = document.getElementById("tt-apple");
+                    var googleLink = document.getElementById("tt-google");
 
                     hiddenDiv.style.display = (hiddenDiv.style.display == "none") ? "block" : "none";
                     mainDiv.style.background = (mainDiv.style.background == "white") ? "black" : "white";
                     mainDiv.style.color = (mainDiv.style.color == "black") ? "white" : "black";
-                    spotifyLink.innerHTML = (spotifyLink.innerHTML == "<img src=\"spotify-24.png\">") ? "<img src=\"spotify-24-black.png\">" : "<img src=\"spotify-24.png\">";
+                    
+                    // toggle icons white/color 
+                    spotifyLink.innerHTML = (spotifyLink.innerHTML == "<img src=\"icons/spotify-24.png\" class=\"icon\">") ? "<img src=\"icons/spotify-icon-color.png\" class=\"icon\">" : "<img src=\"icons/spotify-24.png\" class=\"icon\">";
+                    appleLink.innerHTML = (appleLink.innerHTML == "<img src=\"icons/Apple_Podcast_Icon.png\" class=\"icon\">") ? "<img src=\"icons/Apple_Podcast_Icon_color.png\" class=\"icon\">" : "<img src=\"icons/Apple_Podcast_Icon.png\" class=\"icon\">";
+                    googleLink.innerHTML = (googleLink.innerHTML == "<img src=\"icons/google-podcast-icon-white.png\" class=\"icon\">") ? "<img src=\"icons/google-podcast-icon-color.png\" class=\"icon\">" : "<img src=\"icons/google-podcast-icon-white.png\" class=\"icon\">";
+
                     mainDiv.style.border.top = (mainDiv.style.border.top == "1px solid white") ? "none" : "1px solid white";
                     mainDiv.style.border.bottom = (mainDiv.style.border.bottom == "1px solid white") ? "none" : "1px solid white";
                 }
