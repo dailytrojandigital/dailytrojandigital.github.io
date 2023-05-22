@@ -164,6 +164,31 @@
             var x = 0;
     
             function renderFrame() {
+                requestAnimationFrame(renderFrame);
+
+                x = 0;
+
+                analyser.getByteFrequencyData(dataArray);
+
+                ctx.fillStyle = "#000";
+                ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+                for (var i = 0; i < bufferLength; i++) {
+                    barHeight = dataArray[i];
+
+                    var intensity = barHeight / 255; // Normalize intensity value between 0 and 1
+
+                    // Calculate blue and purple values based on intensity
+                    var blue = Math.round(125 * intensity); // Increase blue component
+                    var red = Math.round(255 * (1 - intensity)); // Decrease red component
+
+                    ctx.fillStyle = "rgb(" + red + ",150," + blue + ")";
+                    ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+
+                    x += barWidth + 1;
+                }
+            }
+
             requestAnimationFrame(renderFrame);
     
             x = 0;
@@ -189,7 +214,6 @@
             renderFrame();
 
             
-        }
 
         function resume() {
             audio.play();
