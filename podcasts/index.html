@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>Podcasts - Daily Trojan</title>
+    <title>Podcasts - Daily Trojan Online</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../univ-stylesheet.css">
     <script src="https://kit.fontawesome.com/5177f0fe75.js" crossorigin="anonymous"></script>
@@ -46,7 +46,7 @@
         
 
         .row { display: flex; margin: 0 auto; padding: 20px;
-        border-top: 1px solid white; border-bottom: 1px solid white; transition: 0.5s; }
+        transition: 0.5s; }
         .column { margin: 0 5% 0 0; }
         .icon { height: 20px; }
 
@@ -63,9 +63,11 @@
 
         .date { margin-bottom: 0; }
 
+        hr { margin: 0; background: white; border: none; height: 1px; }
+
         #hidden1, #hidden2, #hidden3 { 
-            display: none; padding: 20px; margin-bottom: 20px; 
-            background: white; color: black; border: none; }
+            display: none; padding: 20px;
+            background: white; color: black; border-bottom: 1px solid black; }
 
         @media screen and (max-width: 1100px) {
             body {
@@ -88,6 +90,7 @@
 
     <div class="fade-in">
         <!-- General Education -->
+        <hr>
         <div id="general-education">
             <div id="ge-main" class="row" onclick="showToggle()">
                 <div class="column" style="flex:10%;">
@@ -101,7 +104,7 @@
                     &nbsp;&nbsp;
                     <a id="ge-apple" title="Apple Podcasts" target="_blank" href="https://podcasts.apple.com/us/podcast/general-education/id1418932313?uo=4"><img src="icons/Apple_Podcast_Icon.png" class="icon"></a>
                     &nbsp;&nbsp;
-                    <a id="ge-google" title="Google Podcasts" target="_blank" href="https://d1f8ha51vzawnk.cloudfront.net/images/podcast/logo-square/006/google_podcasts.png"><img src="icons/google-podcast-icon-white.png" class="icon"></a>
+                    <a id="ge-google" title="Google Podcasts" target="_blank" href="https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy9lNzk3ZDc4L3BvZGNhc3QvcnNz" class="icon"><img src="icons/google-podcast-icon-white.png" class="icon"></a>
                     &nbsp;&nbsp;
 
                     <p>Conversations with our reporters about the latest USC news and interviews with individuals making waves within the USC community.</p>
@@ -140,12 +143,14 @@
             </script>
             <div id="hidden1">
                 
-                <p class="date"><small>April 16, 2023</small></p>
-                <a href="test/test-general-education.html"><h3>Allyson Felix Field, a new USG initiative, and an interview on USC&rsquo;s rabbinic intern</h3></a>
+                <p class="date"><small>May 1, 2023</small></p>
+                <a href="test/test-general-education.html"><h3>Changes to Wrigley Institute for Environmental Studies, water damages to Birnkrant and an interview on philanthropic coffee shop Kind Grounds</h3></a>
                 <br>
                 <p><a href="https://podcasters.spotify.com/pod/show/general-education">Older episodes</a></p>
             </div>
         </div>
+
+        <hr>
 
         <!-- Rhythm and News -->
         <div id="rhythm-and-news">
@@ -199,6 +204,8 @@
                 <p><a href="https://podcasters.spotify.com/pod/show/rhythm-and-news">Older episodes</a></p>
             </div>
         </div>
+
+        <hr>
 
         <!-- Talkin' Troy -->
         <div id="talkin-troy">
@@ -255,5 +262,8 @@
                 <p><a href="https://podcasters.spotify.com/pod/show/talkin-troy">Older episodes</a></p>
             </div>
         </div>
+
+        <hr>
+        
     </div>
 </body>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>The Cardinal Divas spread the majorette gospel - Daily Trojan Online</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../univ-stylesheet.css">
+        <script src="https://kit.fontawesome.com/5177f0fe75.js" crossorigin="anonymous"></script>
+        <link rel="icon" href="../dt-online-icon.jpg">
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK5KHD8MJP"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-FK5KHD8MJP');
+        </script>
+
+        <style>
+            body {
+                background: black; color: white;
+                margin: 2% auto;
+                width: 100%;
+                font-family: 'Neue Haas Grotesk Text Pro';
+            }
+            h1 {
+                font-family: 'Neue Haas Grotesk Text Pro Bold'; 
+                font-weight: normal; 
+                font-size: 40px;
+            }
+            h2 { 
+                font-family: 'Neue Haas Grotesk Text Pro Bold'; 
+                font-weight: normal;
+                margin-top: 0; 
+            }
+
+            a { color: white; }
+
+            #background-video {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -5;
+                transition: opacity 0.5s ease-in-out;
+            }
+
+            #description {
+                transition: opacity 0.5s ease-in-out;
+                padding: 20px 40px;
+                z-index: 5;
+                width: 40%;
+            }
+
+            .hide-description {
+                opacity: 0;
+            }
+
+            .vid-fade { opacity: 50%; }
+
+        </style>
+    </head>
+    <body>
+        <video oncontextmenu="return false;" controlsList="nodownload" controls id="background-video">
+            <source src="vid/cardinal-divas.mp4" type="video/mp4">
+        </video>
+
+        
+        
+        <div id="description">
+            <a href="../index.html">
+                <img src="http://dailytrojan.com/wp-content/uploads/2023/05/dailytrojanonline-icon.png" style="width:130px;">
+            </a>
+            <a href="index.html">
+                <p>&lt;&lt; Back to Videos</p>
+            </a>
+            <h1>The Cardinal Divas spread the majorette gospel</h1>
+            <p>After a whirlwind of media attention, the team is pressing onward, busy as ever.</p>
+            <p class="date" style="margin-bottom:0;"><small>February 13, 2023</small></p>
+            <p style="margin-top: 0;">  
+                <small>
+                    Watch on
+                    <a href="https://www.youtube.com/watch?v=qLv58DoBzFA">YouTube</a>
+                </small>
+            </p>
+            
+        </div>     
+        
+        <script>
+            const video = document.getElementById('background-video');
+            const description = document.getElementById('description');
+
+            video.addEventListener('play', () => {
+                description.classList.add('hide-description');
+                video.classList.remove('vid-fade');
+            });
+
+            video.addEventListener('pause', () => {
+                description.classList.remove('hide-description');
+                video.classList.add('vid-fade');
+            });
+
+            video.addEventListener('seeking', () => {
+                description.classList.add('hide-description');
+                video.classList.remove('vid-fade')
+            });
+
+            video.addEventListener('ended', () => {
+                description.classList.remove('hide-description');
+                video.classList.add('vid-fade');
+            });
+        </script>
+
+    </body>
+</html>
