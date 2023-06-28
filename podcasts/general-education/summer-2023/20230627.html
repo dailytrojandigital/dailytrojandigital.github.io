@@ -1,0 +1,329 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Daily Trojan">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>General Education: A new boba place coming to USC Village, USG passes a bill amending 2023-24 budget and POIR fights to keep beloved outreach center funded</title>
+
+    <link rel="stylesheet" href="../../../univ-stylesheet.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link rel="icon" href="../../icons/dt-online-icon.jpg">
+
+    <meta property="og:image" content="https://dailytrojan.com/wp-content/uploads/2023/06/2023_02_17_USC_CALIS_Notre_Dame_19-1030x773.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <style>
+        h1 {
+            font-family: 'Neue Haas Grotesk Text Pro Bold'; 
+            font-weight: normal; 
+            font-size: 40px;
+        }
+        h2 { 
+            font-family: 'Neue Haas Grotesk Text Pro Bold'; 
+            font-weight: normal; 
+        }
+
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        a { color: #fff; }
+
+        p, #timestamp, #duration {
+            font-family: 'Neue Haas Grotesk Text Pro'; 
+            font-size: 17px;
+        }
+
+        #timestamp { margin-left: 10px; }
+
+        #subtitle-container {
+            width: 100%;
+            margin: -1em;
+            text-align: center;
+            position: absolute;
+            bottom: 14%;
+        }
+
+        #controls-info {
+            position: fixed;
+            bottom: 20px;
+            left: 30px;
+        }
+
+        small {
+            font-family: 'Neue Haas Grotesk Text Pro'; 
+            color: grey;
+            font-size: 14px;
+        }
+
+
+        #canvas {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: -5;
+            width: 100%;
+            height: 90%;
+            border-bottom: 1px solid white;
+            opacity: 80%;
+        }
+
+        audio, .hidden, #toggle {
+            display: none;
+        }
+
+        button { 
+            padding: 10px 20px; 
+            background: #990000; 
+            color: white;
+            border: none;
+        }
+
+        button p { margin: 0; }
+
+        .row { display: flex; margin: 0 auto; }
+        .column { margin: 0 5% 0 0; }
+
+        #description { padding: 20px; }
+
+        #transcript { height: 300px; overflow-y: scroll; }
+        #transcript p { font-size: 14px; color: grey; }
+
+        #home-logo { width:130px; padding:20px 0 0 20px; }
+
+        @media screen and (max-width: 800px) {
+            #description {
+                width: 90%; padding: 0;
+            }
+            #canvas { opacity: 50%; border-bottom: 0; }
+            .row { flex-direction: column; }
+            .column { margin: 0; padding: 0 20px; }
+            #subtitle-container { 
+                position: fixed; 
+                background: black;
+                bottom: 60px;
+                width: 95%;
+            }
+            #spacer { height: 200px; }
+            #home-logo { padding: 20px 0 0 0; }
+            #pc-spacer { display: none; }
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeUp 1.5s forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK5KHD8MJP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-FK5KHD8MJP');
+    </script>
+
+    <!-- audio visualizer + manual controls + timestamp/duration -->
+    <script>
+        function audVis() {
+            
+            var audio = document.getElementById("audio");
+            audio.load();
+            audio.play();
+            var context = new AudioContext();
+            var src = context.createMediaElementSource(audio);
+            var analyser = context.createAnalyser();
+    
+            var canvas = document.getElementById("canvas");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            var ctx = canvas.getContext("2d");
+    
+            src.connect(analyser);
+            analyser.connect(context.destination);
+    
+            analyser.fftSize = 256;
+    
+            var bufferLength = analyser.frequencyBinCount;
+            console.log(bufferLength);
+    
+            var dataArray = new Uint8Array(bufferLength);
+    
+            var WIDTH = canvas.width;
+            var HEIGHT = canvas.height;
+    
+            var barWidth = (WIDTH / bufferLength) * 2.5;
+            var barHeight;
+            var x = 0;
+    
+            function renderFrame() {
+            requestAnimationFrame(renderFrame);
+    
+            x = 0;
+    
+            analyser.getByteFrequencyData(dataArray);
+    
+            ctx.fillStyle = "#000";
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    
+            for (var i = 0; i < bufferLength; i++) {
+                barHeight = dataArray[i];
+                
+                var r = barHeight + (25 * (i/bufferLength));
+                var g = 250 * (i/bufferLength);
+                var b = 50;
+    
+                ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+                ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+    
+                x += barWidth + 1;
+            }
+            }
+            renderFrame();
+
+            
+        }
+
+        function resume() {
+            audio.play();
+        }
+
+        function pause() {
+            audio.pause();
+        }
+
+        function hide_start() {
+            var button_start = document.getElementById('start');
+            var button_pause = document.getElementById('toggle');
+            button_start.classList.add('hidden');
+            button_pause.style.display = 'inline-block';
+        }
+
+        function toggle_pause_resume() {
+            var button = document.getElementById('toggle');
+            if (audio.paused) {
+                button.innerHTML = "<i class='fa fa-pause'></i>";
+                resume();
+            } else {
+                button.innerHTML = "<i class='fa fa-play'></i>";
+                pause();
+            }
+        }
+
+        function rewindAudio() {
+            var audio = document.getElementById("audio");
+            audio.currentTime -= 15; // Rewind by 15 seconds
+        }
+
+        function fastForwardAudio() {
+            var audio = document.getElementById("audio");
+            audio.currentTime += 15; // Fast-forward by 15 seconds
+        }
+
+        function updateTimestamp() {
+            var audio = document.getElementById("audio");
+            var timestamp = document.getElementById("timestamp");
+            var currentTimestamp = formatTimestamp(audio.currentTime);
+            timestamp.innerHTML = currentTimestamp;
+        }
+
+        function formatTimestamp(timestamp) {
+            var minutes = Math.floor(timestamp / 60);
+            var seconds = Math.floor(timestamp % 60);
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            return minutes + ":" + seconds;
+        }
+
+        function updateDuration() {
+            var audio = document.getElementById("audio");
+            var duration = document.getElementById("duration");
+            var totalDuration = formatTimestamp(audio.duration);
+            duration.innerHTML = totalDuration;
+        }
+    </script>
+</head>
+<body>
+    <div id="content">
+        
+        <div class="row">
+            <div class="column" style="flex: 50%;">
+                <a href="https://dailytrojanonline.com">
+                    <img id="home-logo" src="http://dailytrojan.com/wp-content/uploads/2023/05/dailytrojanonline-icon.png">
+                </a>
+                <div class="fade-up" id="description">
+                    <p><a href="../../index.html">&lt;&lt;&nbsp;&nbsp; Back to Podcasts</a></p>
+                    <h1>General Education</h1>
+                    <h2>A new boba place coming to USC Village, USG passes a bill amending 2023-24 budget and POIR fights to keep beloved outreach center funded
+                    </h2>
+                    <p><small>June 27, 2023</small></p>
+
+                    <!-- Spotify link -->
+                    <a title="Spotify" target="_blank" href="https://open.spotify.com/episode/3pgMlHQA0YvvfJMzecdwJ8?si=0f78e7b195854da7"><img src="../../icons/spotify-24.png"></a>
+
+                    &nbsp;
+
+                    <!-- Apple Podcasts link -->
+
+                    <a title="Apple Podcasts" target="_blank" href="https://podcasts.apple.com/us/podcast/a-new-boba-place-coming-to-the-usc-village-usg/id1418932313?i=1000618551738"><img src="../../icons/Apple_Podcast_Icon.png" style="height:24px;"></a>
+                    
+                    &nbsp;
+
+                    <!-- Google Podcasts link -->
+                    <!--
+                    <a title="Google Podcasts" target="_blank" href="#"><img src="../../icons/google-podcast-icon-white.png" style="height:24px;"></a>
+                    -->
+                    <p><a href="https://dailytrojan.com/2023/06/21/boba-shop-comes-to-usc-village-this-fall/" target="_blank" rel="noopener">A new boba place coming to the USC village from the founder of Cafe Dulce</a><span>,&nbsp;</span><a href="https://dailytrojan.com/2023/06/20/usg-approves-2023-24-budget/" target="_blank" rel="noopener">USG Senate passes a bill amending next school year&rsquo;s budget plan&nbsp;</a><span>and an interview with staff writer Nathan Elias about his&nbsp;</span><a href="https://dailytrojan.com/2023/06/21/poir-to-negotiate-funding-beloved-usc-outreach-center/" target="_blank" rel="noopener">article</a><span>&nbsp;on funding cuts for the Center for Active Learning in International Relations.</span></p>
+                    
+                    <small>This episode was hosted by Kevin Gramling. Written by Kevin Gramling. First recap based on the article by Quinten Seghers. Second Recap based on the article by Mateo Villalba-Mutis. Edited by Thomas Johnson. Produced by Grace Ingram and Christina Chkarboul.</small>
+                </div>
+                
+            </div>
+            <div class="column" style="flex: 17%;"></div>
+            <div class="column" style="flex: 33%;" id="transcript-col">
+                <!--
+                <br><br><br><br>
+                <div style="color: black; background: white; padding: 20px;">
+                    <p>If you are in need of support, help is available. Here are some resources you can contact:</p>
+                    <ul>
+                        <li><p><b>USC Relationship and Sexual Violence Prevention and Services</b> is located at Engemann Student Health Center Suite 356. Call (213) 740-9355 and request to speak with an advocate or counselor. Services are confidential.</p></li>
+                        <li><p><b>Rape, Abuse &amp; Incest National Network (RAINN)</b> is a free confidential hotline that is active 24/7. Call (800) 656-4673.</p></li>
+                    </ul>
+                </div>
+                -->
+            </div>
+        </div>
+        <div id="spacer"></div>
+        <!--
+        <div id="subtitle-container"></div>
+        -->
+            
+        <canvas id="canvas"></canvas>
+        <audio oncontextmenu="return false;" id="audio" onloadedmetadata="updateDuration()" ontimeupdate="updateTimestamp()">
+            <source src="20230627.wav" type="audio/mpeg">
+        </audio>
+
+        <div id="controls-info">
+            <button class="button" onclick="rewindAudio()"><i class="fa fa-fast-backward"></i></button>
+            <button id="start" onclick="audVis(); hide_start()"><i class='fa fa-play'></i></button>
+            <button id="toggle" onclick="toggle_pause_resume()"><i class='fa fa-pause'></i></button>
+            <button class="button" onclick="fastForwardAudio()"><i class="fa fa-fast-forward"></i></button>
+            <span id="timestamp">0:00</span> / <span id="duration">NaN</span>
+        </div>
+    </div>
+</body>
