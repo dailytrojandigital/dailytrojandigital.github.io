@@ -1,0 +1,24 @@
+/* fonts */
+
+@font-face {
+    font-family: 'Georgia Italic';
+    src: url('../georgiai.ttf'); 
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Pro';
+    src: url('../NeueHaasDisplayRoman.ttf');
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk Pro Bold';
+    src: url('../NeueHaasDisplayBold.ttf');
+}
+
+@font-face {
+    font-family: 'Miller Display Bold';
+    src: url('../MillerDisplayBold.ttf');
+}
+
+/* setting text types to fonts */
+p { font-family: 'Georgia'; }
